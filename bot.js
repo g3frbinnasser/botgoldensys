@@ -1784,17 +1784,20 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 	} else if (command === `skip`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
+		message.reply(':play_pause: **تم التخطي**');
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
 		return undefined;
 	} else if (command === `stop`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
+		message.reply(':stop_button: **تم الايقاف**');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
 	} else if (command === `s`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
+		message.reply(':stop_button: **تم الايقاف**');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
