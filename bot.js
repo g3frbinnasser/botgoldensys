@@ -1690,6 +1690,7 @@ client.on("guildMemberAdd", member => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 const { Client, Util } = require('discord.js');
 const { PREFIX, GOOGLE_API_KEY } = require('./config1');
 const YouTube = require('simple-youtube-api');
@@ -1699,8 +1700,6 @@ const ytdl = require('ytdl-core');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 const queue = new Map();
-
-
 
 
 client.on('warn', console.warn);
@@ -1784,20 +1783,17 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 	} else if (command === `skip`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
-		message.reply(':play_pause: **تم التخطي**');
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
 		return undefined;
 	} else if (command === `stop`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
-		message.reply(':stop_button: **تم الايقاف**');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
 	} else if (command === `s`) {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
-		message.reply(':stop_button: **تم الايقاف**');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
@@ -1857,7 +1853,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 			voiceChannel: voiceChannel,
 			connection: null,
 			songs: [],
-			volume: 4,
+			volume: 5,
 			playing: true
 		};
 		queue.set(msg.guild.id, queueConstruct);
@@ -1904,6 +1900,8 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
 }
+
+
 
 
 
